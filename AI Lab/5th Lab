@@ -1,0 +1,34 @@
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.neighbors = []
+    def add_neighbor(self, neighbor_node):
+        self.neighbors.append(neighbor_node)
+
+
+def dfs_with_stack(start_node):
+    stack = [start_node]
+    visited = set()
+    
+    while stack:
+        current_node = stack.pop()
+        if current_node not in visited:
+            visited.add(current_node)
+            print(current_node.value)
+            for neighbor in current_node.neighbors:
+                if neighbor not in visited:
+                    stack.append(neighbor)
+
+
+node_a = Node('A')
+node_b = Node('B')
+node_c = Node('C')
+node_d = Node('D')
+node_e = Node('E')
+
+node_a.add_neighbor(node_b)
+node_b.add_neighbor(node_c)
+node_c.add_neighbor(node_d)
+node_d.add_neighbor(node_e)
+
+dfs_with_stack(node_a)
